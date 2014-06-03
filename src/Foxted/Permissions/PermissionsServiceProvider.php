@@ -1,29 +1,32 @@
-<?php namespace Mrterryh\Permissions;
+<?php namespace Foxted\Permissions;
 
 use Illuminate\Support\ServiceProvider;
 
-class PermissionsServiceProvider extends ServiceProvider {
+/**
+ * Class PermissionsServiceProvider
+ * @package Foxted\Permissions
+ * @author  Valentin Prugnaud <valentin@sccnorthwest.com>
+ */
+class PermissionsServiceProvider extends ServiceProvider
+{
 
 	/**
 	 * Indicates if loading of the provider is deferred.
-	 *
 	 * @var bool
 	 */
 	protected $defer = false;
 
 	/**
 	 * Bootstrap the application events.
-	 *
 	 * @return void
 	 */
 	public function boot()
 	{
-		$this->package('mrterryh/permissions');
+		$this->package('foxted/permissions');
 	}
 
 	/**
 	 * Register the service provider.
-	 *
 	 * @return void
 	 */
 	public function register()
@@ -33,7 +36,6 @@ class PermissionsServiceProvider extends ServiceProvider {
 
 	/**
 	 * Get the services provided by the provider.
-	 *
 	 * @return array
 	 */
 	public function provides()
