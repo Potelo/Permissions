@@ -1,24 +1,28 @@
 {
-    "name": "mrterryh/permissions",
-    "description": "Tiny Laravel 4 package for handling user roles and permissions.",
+    "name": "foxted/permissions",
+    "description": "Tiny Laravel 4 package for handling user roles and permissions based on the work of mrterryh/permissions",
     "keywords": ["laravel", "permissions", "auth", "roles"],
     "license": "MIT",
     "authors": [
         {
             "name": "Terry Harvey",
             "email": "mcstormify@gmail.com"
+        },
+        {
+            "name": "Valentin Prugnaud",
+            "email": "valentin@whatdafox.com"
         }
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.1.*"
+        "illuminate/support": "4.2.*"
     },
     "autoload": {
         "classmap": [
             "src/migrations"
         ],
         "psr-0": {
-            "Mrterryh\\Permissions\\": "src/"
+            "Foxted\\Permissions\\": "src/"
         }
     },
     "minimum-stability": "stable"
