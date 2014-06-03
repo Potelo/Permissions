@@ -12,7 +12,7 @@ class CreateRolePermissionTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('role_permissions', function($table)
+		Schema::create('permission_role', function($table)
 		{
 			$table->increments('id');
 			$table->integer('role_id');
@@ -28,7 +28,7 @@ class CreateRolePermissionTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('role_permissions');
+		Schema::drop('permission_role');
 	}
 
 }
