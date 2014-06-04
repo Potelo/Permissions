@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.3
   - 5.4
   - 5.5
 
@@ -9,7 +8,7 @@ before_install:
   - cd ../..
   - pwd
   - ls
-  - curl -s http://getcomposer.org/installer | php
+  - composer self-update
   - composer create-project laravel/laravel
   - ls
   - mv ./foxted ./laravel/vendor/
@@ -17,7 +16,7 @@ before_install:
   - ls ./laravel/vendor/foxted
   - touch ./laravel/app/database/testing.sqlite
   - cp ./laravel/vendor/foxted/permissions/tests/config/database.php ./laravel/app/config/testing/
-  - cp ./laravel/vendor/foxted/p&ermissions/tests/config/app.php ./laravel/app/config/testing/
+  - cp ./laravel/vendor/foxted/permissions/tests/config/app.php ./laravel/app/config/testing/
   - export APP_ENV="testing"
   - composer dump-autoload -o
   - cd ./laravel/vendor/foxted/permissions
