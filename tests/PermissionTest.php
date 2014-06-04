@@ -21,8 +21,8 @@ class PermissionTest extends TestCase
 
         $this->assertInstanceOf(
              'Foxted\Permissions\Permission',
-             $permission,
-             'The object must be an instance of Foxted\\Permissions\\Permission'
+                 $permission,
+                 'The object must be an instance of Foxted\\Permissions\\Permission'
         );
     }
 
@@ -32,9 +32,9 @@ class PermissionTest extends TestCase
         $permission = $this->createPermission();
 
         $this->assertEquals(
-            'test',
-            $permission->name,
-            "The name should be \"test\""
+             'test',
+                 $permission->name,
+                 "The name should be \"test\""
         );
     }
 
@@ -45,8 +45,8 @@ class PermissionTest extends TestCase
 
         $this->assertEquals(
              'TestPermission',
-             $permission->display_name,
-             "The name should be \"TestPermission\""
+                 $permission->display_name,
+                 "The name should be \"TestPermission\""
         );
     }
 

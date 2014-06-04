@@ -4,15 +4,18 @@ php:
   - 5.3
   - 5.4
   - 5.5
-  - hhvm
 
-before_script:
-  - composer self-update
-  - composer install --prefer-source --no-interaction --dev
+before_install:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install --dev
+  - cd ~/builds
+  - composer create-project laravel/laravel
+  - mv ./foxted/permissions ./laravel/vendor/foxted/permissions
+  - touch ./laravel/app/database/testing.sqlite
+  - cp ./laravel/vendor/foxted/permissions/tests/config/database.php ./laravel/app/config/testing/
+  - cp ./laravel/vendor/foxted/permissions/tests/config/app.php ./laravel/app/config/testing/
+  - export APP_ENV="testing"
+  - composer dump-autoload -o
+  - cd ./laravel/vendor/foxted/permissions
 
-script: phpunit -d memory_limit=1024M
-
-matrix:
-  allow_failures:
-    - php: hhvm
-  fast_finish: true
+script: "phpunit"
