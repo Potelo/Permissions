@@ -12,12 +12,15 @@ class CreateRoleTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('roles', function($table)
-		{
-			$table->increments('id');
-			$table->string('name');
-			$table->timestamps();
-		});
+		if(!Schema::hasTable('roles'))
+        {
+            Schema::create('roles', function($table)
+            {
+                $table->increments('id');
+                $table->string('name');
+                $table->timestamps();
+            });
+        }
 	}
 
 	/**

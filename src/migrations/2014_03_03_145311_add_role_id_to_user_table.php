@@ -12,10 +12,13 @@ class AddRoleIdToUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function($table)
-		{
-			$table->integer('role_id')->after('id')->default(0);
-		});
+		if(Schema::hasTable('users'))
+        {
+            Schema::table('users', function($table)
+            {
+                $table->integer('role_id')->after('id')->default(0);
+            });
+        }
 	}
 
 	/**

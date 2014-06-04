@@ -8,6 +8,7 @@
 class Role extends \Eloquent
 {
 	protected $table = 'roles';
+    protected $guarded = ['id'];
 
     /**
      * Check if the role has specified permission
