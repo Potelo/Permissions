@@ -6,9 +6,8 @@ php:
   - 5.5
 
 before_install:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install --dev
   - cd ~/builds
+  - curl -s http://getcomposer.org/installer | php
   - composer create-project laravel/laravel
   - mv ./foxted/permissions ./laravel/vendor/foxted/permissions
   - touch ./laravel/app/database/testing.sqlite
