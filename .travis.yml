@@ -7,6 +7,8 @@ php:
 
 before_install:
   - cd ../..
+  - pwd
+  - ls
   - curl -s http://getcomposer.org/installer | php
   - composer create-project laravel/laravel
   - mv ./foxted/Permissions ./laravel/vendor/foxted/permissions
