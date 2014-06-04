@@ -13,11 +13,12 @@ before_install:
   - composer create-project laravel/laravel
   - ls
   - mv ./foxted ./laravel/vendor/
+  - mv ./laravel/vendor/foxted/Permissions ./laravel/vendor/foxted/permissions
   - touch ./laravel/app/database/testing.sqlite
   - cp ./laravel/vendor/foxted/permissions/tests/config/database.php ./laravel/app/config/testing/
   - cp ./laravel/vendor/foxted/permissions/tests/config/app.php ./laravel/app/config/testing/
   - export APP_ENV="testing"
   - composer dump-autoload -o
-  - cd ./laravel/vendor/foxted/Permissions
+  - cd ./laravel/vendor/foxted/permissions
 
 script: "phpunit"
