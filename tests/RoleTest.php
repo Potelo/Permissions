@@ -17,7 +17,7 @@ class RoleTest extends TestCase
     /** @test */
     public function it_can_create_a_role()
     {
-        $role = $this->createRole(['id' => 1, 'name' => 'TestRole']);
+        $role = $this->createRole();
 
         $this->assertInstanceOf(
              'Foxted\Permissions\Role',
@@ -27,10 +27,22 @@ class RoleTest extends TestCase
     }
 
     /** @test */
+    public function it_can_have_a_name()
+    {
+        $role = $this->createRole();
+
+        $this->assertEquals(
+             'TestRole',
+             $role->name,
+             "The name should be \"TestRole\""
+        );
+    }
+
+    /** @test */
     public function it_can_have_a_permission()
     {
-        $role = $this->createRole(['name' => 'TestRole']);
-        $permission = $this->createPermission(['name' => "test", 'display_name' => "Test"]);
+        $role = $this->createRole();
+        $permission = $this->createPermission();
 
         $role->allow($permission);
 
@@ -39,24 +51,25 @@ class RoleTest extends TestCase
 
     /**
      * Create a role
-     * @param array $attributes
      * @return Role
      */
-    private function createRole(array $attributes)
+    private function createRole()
     {
-        $role = new Role($attributes);
+        $role = new Role(['name' => 'TestRole']);
         $role->save();
         return $role;
     }
 
     /**
      * Create permission
-     * @param array $attributes
      * @return Permission
      */
-    private function createPermission(array $attributes)
+    private function createPermission()
     {
-        $permission = new Permission($attributes);
+        $permission = new Permission([
+            'name' => "test",
+            'display_name' => "TestPermission"
+        ]);
         $permission->save();
         return $permission;
     }
