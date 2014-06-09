@@ -1,39 +1,40 @@
-Permissions
-===========
+# Permissions
 
-Tiny Laravel 4 package for handling user roles and permissions.
+[![Build Status](https://travis-ci.org/foxted/Permissions.svg?branch=master)](https://travis-ci.org/foxted/Permissions)
 
-Installation
-============
+Laravel 4 package for handling user roles and permissions based on [mrterryh/permissions](https://github.com/mrterryh/Permissions) package.
+
+## Installation
 
 Add the following to the require key of your composer.json file:
 
-    "mrterryh/permissions": "dev-master"
+    "foxted/permissions": "dev-master"
     
         
 Run `$ composer update`.
 
-Navigate to your `config/app.php` file and add `'Mrterryh\Permissions\PermissionsServiceProvider'` to the `$providers` array.
+Navigate to your `config/app.php` file and add `'Foxted\Permissions\PermissionsServiceProvider'` to the `$providers` array.
 
-Create the tables by running `$ php artisan migrate package="mrterryh/permissions"`. Ensure that your `users` table exists first.
+Create the tables by running `$ php artisan migrate package="foxted/permissions"`. Ensure that your `users` table exists first.
 
-Navigate to your `models/User.php` file and add the `Mrterryh\Permissions\Can` trait below the class decloration line:
+Navigate to your `models/User.php` file and add the `Foxted\Permissions\Can` trait below the class decloration line:
 
-    class User extends Eloquent implements UserInterface, RemindableInterface {
-        use Mrterryh\Permissions\Can;
+    class User extends Eloquent implements UserInterface, RemindableInterface 
+    {
+        use Foxted\Permissions\Can;
+    }
         
-Usage
-=====
+## Usage
 
 Create a new role:
 
-    $role = new \Mrterryh\Permissions\Role();
+    $role = new \Foxted\Permissions\Role();
     $role->name = 'Administrator';
     $role->save();
     
 Create a new permission:
 
-    $permission = new \Mrterryh\Permissions\Permission();
+    $permission = new \Foxted\Permissions\Permission();
     $permission->name = 'read_articles';
     $permission->display_name ='Can read articles';
     $permission->save();
@@ -60,12 +61,10 @@ To check if the current authenticated user has a permission:
     if (Auth::user()->can('read_articles'))
         echo 'The current authenticated user can read articles';
         
-License
-=======
+## License
 
 Permissions is licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-Thank you!
-==========
+## Thank you!
 
-Thank you for using my package. Should you encouter any problems, please submit them [here](https://github.com/mrterryh/Permissions/issues) and they shall be dealt with promptly.
+Thank you Mrterryh for initiating this package. Thank you for you if you're using this package.
