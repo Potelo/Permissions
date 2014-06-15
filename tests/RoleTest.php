@@ -3,16 +3,8 @@
 use Foxted\Permissions\Permission;
 use Foxted\Permissions\Role;
 
-class RoleTest extends TestCase
+class RoleTest extends BaseTest
 {
-    public function setUp()
-    {
-        parent::setUp();
-        $this->app->make('artisan')->call('migrate', [
-            '--env' => 'testing',
-            '--package' => 'foxted/permissions'
-        ]);
-    }
 
     /** @test */
     public function it_can_create_a_role()

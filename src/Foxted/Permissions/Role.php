@@ -10,6 +10,11 @@ class Role extends \Eloquent
 	protected $table = 'roles';
     protected $guarded = ['id'];
 
+    public function permissions()
+    {
+        return $this->belongsToMany('\Foxted\Permissions\Permission');
+    }
+
     /**
      * Check if the role has specified permission
      * @param $permission
@@ -17,16 +22,19 @@ class Role extends \Eloquent
      */
     public function can($permission)
 	{
-		$rolePermissions = PermissionRole::role($this->id);
-
-		foreach ($rolePermissions as $rolePermission)
+		if($permission != NULL)
         {
-			if ($rolePermission->permission->name == $permission)
+            if($this->permissions != NULL)
             {
-				return true;
-			}
-		}
-
+                foreach ($this->permissions as $permissionRole)
+                {
+                    if($permissionRole->name == $permission)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
 		return false;
 	}
 
@@ -36,10 +44,10 @@ class Role extends \Eloquent
      */
     public function allow(Permission $permission)
 	{
-		$permissionRole = new PermissionRole();
-		$permissionRole->role_id = $this->id;
-		$permissionRole->permission_id = $permission->id;
-		$permissionRole->save();
+        $permissionRole = new PermissionRole();
+        $permissionRole->role_id = $this->id;
+        $permissionRole->permission_id = $permission->id;
+        $permissionRole->save();
 	}
 
     /**

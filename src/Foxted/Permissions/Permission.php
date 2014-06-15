@@ -9,4 +9,13 @@ class Permission extends \Eloquent
 {
 	protected $table = 'permissions';
     protected $guarded = ['id'];
+
+    /**
+     * Role relationship
+     * @return mixed
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('\Foxted\Permissions\Role');
+    }
 }

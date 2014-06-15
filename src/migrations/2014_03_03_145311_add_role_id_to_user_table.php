@@ -12,7 +12,7 @@ class AddRoleIdToUserTable extends Migration {
 	 */
 	public function up()
 	{
-		if(Schema::hasTable('users'))
+		if(Schema::hasTable('users') && !Schema::hasColumn('users', 'role_id'))
         {
             Schema::table('users', function($table)
             {
