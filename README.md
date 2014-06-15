@@ -15,7 +15,7 @@ Run `$ composer update`.
 
 Navigate to your `config/app.php` file and add `'Foxted\Permissions\PermissionsServiceProvider'` to the `$providers` array.
 
-Create the tables by running `$ php artisan migrate package="foxted/permissions"`. Ensure that your `users` table exists first.
+Create the tables by running `$ php artisan migrate package="foxted/permissions"`. If you don't have any user table, it will create one basic table for you.
 
 Navigate to your `models/User.php` file and add the `Foxted\Permissions\Can` trait below the class decloration line:
 
@@ -23,6 +23,8 @@ Navigate to your `models/User.php` file and add the `Foxted\Permissions\Can` tra
     {
         use Foxted\Permissions\Can;
     }
+
+If you want to modify the migrations, you can publish them by running : `$ php artisan migrate:publish foxted/permission`
         
 ## Usage
 
@@ -60,7 +62,21 @@ To check if the current authenticated user has a permission:
 
     if (Auth::user()->can('read_articles'))
         echo 'The current authenticated user can read articles';
-        
+
+## Console tools
+
+For your conveniance, a few console tools exists :
+
+### Add role
+
+Quickly create a role using :  `$ php artisan roles:add <role_name>`
+
+### Attach permissions to a role
+
+Quickly attach permissions to a role using `roles:permissions`
+
+Ex. : `$ php artisan roles:permissions Admin read_posts,create_posts,edit_posts,delete_posts`
+
 ## License
 
 Permissions is licensed under the [MIT license](http://opensource.org/licenses/MIT).
