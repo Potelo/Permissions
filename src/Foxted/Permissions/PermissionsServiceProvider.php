@@ -1,5 +1,6 @@
 <?php namespace Foxted\Permissions;
 
+
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -31,10 +32,27 @@ class PermissionsServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		//
+        foreach(['RoleAdd'] as $command)
+        {
+            $this->{"register$command"}();
+        }
 	}
 
-	/**
+    /**
+     * Register the model generator
+     */
+    protected function registerRoleAdd()
+    {
+        $this->app->bind('permissions.role.add', function($app)
+        {
+            return $app->make('Foxted\Permissions\Command\RoleAddCommand');
+        });
+
+        $this->commands('permissions.role.add');
+    }
+
+
+    /**
 	 * Get the services provided by the provider.
 	 * @return array
 	 */
