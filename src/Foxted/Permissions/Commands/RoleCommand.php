@@ -7,12 +7,12 @@ use Symfony\Component\Console\Input\InputArgument;
 use Foxted\Permissions\Role;
 
 /**
- * Class RoleAddCommand
+ * Class RoleCommand
  * @package Foxted\Permissions\Command
  * @author  Valentin PRUGNAUD <valentin@whatdafox.com>
  * @url http://www.foxted.com
  */
-class RoleAddCommand extends Command
+class RoleCommand extends Command
 {
 
 	/**

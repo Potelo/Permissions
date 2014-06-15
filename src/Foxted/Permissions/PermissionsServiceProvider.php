@@ -32,23 +32,36 @@ class PermissionsServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-        foreach(['RoleAdd'] as $command)
+        foreach(['Role', 'RolePermission'] as $command)
         {
             $this->{"register$command"}();
         }
 	}
 
     /**
-     * Register the model generator
+     * Register the role add command
      */
-    protected function registerRoleAdd()
+    protected function registerRole()
     {
-        $this->app->bind('permissions.role.add', function($app)
+        $this->app->bind('roles.add', function($app)
         {
-            return $app->make('Foxted\Permissions\Command\RoleAddCommand');
+            return $app->make('Foxted\Permissions\Command\RoleCommand');
         });
 
-        $this->commands('permissions.role.add');
+        $this->commands('roles.add');
+    }
+
+    /**
+     * Register the role permissions add command
+     */
+    protected function registerRolePermission()
+    {
+        $this->app->bind('roles.permissions', function($app)
+        {
+            return $app->make('Foxted\Permissions\Command\RolePermissionCommand');
+        });
+
+        $this->commands('roles.permissions');
     }
 
 
