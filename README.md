@@ -15,7 +15,7 @@ Run `$ composer update`.
 
 Navigate to your `config/app.php` file and add `'Foxted\Permissions\PermissionsServiceProvider'` to the `$providers` array.
 
-Create the tables by running `$ php artisan migrate package="foxted/permissions"`. If you don't have any user table, it will create one basic table for you.
+Create the tables by running `$ php artisan migrate --package="foxted/permissions"`. If you don't have any user table, it will create one basic table for you.
 
 Navigate to your `models/User.php` file and add the `Foxted\Permissions\Can` trait below the class decloration line:
 
