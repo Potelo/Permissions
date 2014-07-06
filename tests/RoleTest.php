@@ -41,15 +41,25 @@ class RoleTest extends BaseTest
         $this->assertTrue($role->can('test'));
     }
 
+    /** @test */
+    public function it_can_deny_a_permission()
+    {
+        $role       = $this->createRole();
+        $permission = $this->createPermission();
+
+        $role->allow( $permission );
+        $role->deny( $permission );
+
+        $this->assertFalse( $role->can('test') );
+    }
+
     /**
      * Create a role
      * @return Role
      */
     private function createRole()
     {
-        $role = new Role(['name' => 'TestRole']);
-        $role->save();
-        return $role;
+        return Role::create(['name' => 'TestRole']);
     }
 
     /**
@@ -58,12 +68,10 @@ class RoleTest extends BaseTest
      */
     private function createPermission()
     {
-        $permission = new Permission([
+        return Permission::create([
             'name' => "test",
             'display_name' => "TestPermission"
         ]);
-        $permission->save();
-        return $permission;
     }
 
 }

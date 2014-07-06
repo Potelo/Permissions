@@ -10,6 +10,14 @@ class Role extends \Eloquent
 	protected $table = 'roles';
     protected $guarded = ['id'];
 
+    public static $factory = [
+        'name' => 'string'
+    ];
+
+    /**
+     * Permissions relationship
+     * @return mixed
+     */
     public function permissions()
     {
         return $this->belongsToMany('\Foxted\Permissions\Permission');
@@ -22,20 +30,12 @@ class Role extends \Eloquent
      */
     public function can($permission)
 	{
-		if($permission != NULL)
+		$permission = Permission::whereName($permission)->first();
+
+        if($permission != NULL)
         {
-            if($this->permissions != NULL)
-            {
-                foreach ($this->permissions as $permissionRole)
-                {
-                    if($permissionRole->name == $permission)
-                    {
-                        return true;
-                    }
-                }
-            }
+            return $this->permissions->contains($permission->id);
         }
-		return false;
 	}
 
     /**
@@ -43,11 +43,9 @@ class Role extends \Eloquent
      * @param Permission $permission
      */
     public function allow(Permission $permission)
-	{
-        $permissionRole = new PermissionRole();
-        $permissionRole->role_id = $this->id;
-        $permissionRole->permission_id = $permission->id;
-        $permissionRole->save();
+    {
+        if( !$this->permissions()->get()->contains( $permission->id ) )
+            $this->permissions()->attach( $permission );
 	}
 
     /**
@@ -56,7 +54,7 @@ class Role extends \Eloquent
      */
     public function deny(Permission $permission)
 	{
-		$permissionRole = PermissionRole::whereRoleId($this->id)->wherePermissionId($permission->id)->first();
-        $permissionRole->delete();
+        if( $this->permissions()->get()->contains( $permission->id ) )
+            $this->permissions()->detach( $permission );
 	}
 }

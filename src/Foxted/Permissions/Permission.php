@@ -11,7 +11,7 @@ class Permission extends \Eloquent
     protected $guarded = ['id'];
 
     /**
-     * Role relationship
+     * Roles relationship
      * @return mixed
      */
     public function roles()

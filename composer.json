@@ -18,14 +18,15 @@
         "laravel/framework": "4.2.*"
     },
     "require-dev":{
-        "phpspec/phpspec": "2.1.*@dev"
+        "phpunit/phpunit": "4.1.*",
+        "zizaco/factory-muff": "dev-master"
     },
     "autoload": {
         "classmap": [
             "src/migrations"
         ],
         "psr-4": {
-            "Foxted\\Permissions\\": "src/Foxted"
+            "Foxted\\": "src/Foxted"
         }
     },
     "minimum-stability": "stable"
