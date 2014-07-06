@@ -83,4 +83,4 @@ Permissions is licensed under the [MIT license](http://opensource.org/licenses/M
 
 ## Thank you!
 
-Thank you Mrterryh for initiating this package. Thank you for you if you're using this package.
+Thank you Mrterryh for initiating this package. Thank you if you're using this package.
