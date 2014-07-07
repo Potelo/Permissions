@@ -1,6 +1,10 @@
 # Permissions
 
 [![Build Status](https://travis-ci.org/foxted/Permissions.svg?branch=master)](https://travis-ci.org/foxted/Permissions)
+[![Latest Stable Version](https://poser.pugx.org/foxted/permissions/v/stable.svg)](https://packagist.org/packages/foxted/permissions) 
+[![Total Downloads](https://poser.pugx.org/foxted/permissions/downloads.svg)](https://packagist.org/packages/foxted/permissions) 
+[![Latest Unstable Version](https://poser.pugx.org/foxted/permissions/v/unstable.svg)](https://packagist.org/packages/foxted/permissions) 
+[![License](https://poser.pugx.org/foxted/permissions/license.svg)](https://packagist.org/packages/foxted/permissions)
 
 Laravel 4 package for handling user roles and permissions based on [mrterryh/permissions](https://github.com/mrterryh/Permissions) package.
 
