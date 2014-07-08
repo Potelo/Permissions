@@ -1,6 +1,8 @@
 <?php namespace Foxted\Permissions\Command;
 
+use Foxted\Permissions\Permission;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -30,9 +32,10 @@ class RoleCommand extends Command
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct(Str $str)
 	{
 		parent::__construct();
+        $this->str = $str;
 	}
 
 	/**
@@ -45,20 +48,48 @@ class RoleCommand extends Command
         else $this->createRole();
 	}
 
-    public function createRole()
+    /**
+     * Create role in database
+     * @return void
+     */
+    protected function createRole()
     {
         $name = $this->argument( 'name' );
         $role = Role::firstOrCreate([
             'name' => $name
         ]);
+        $this->attachPermissions($role);
         $this->info( $name.' role created!' );
     }
 
-    public function deleteRole()
+    /**
+     * Delete role from database
+     * @return void
+     */
+    protected function deleteRole()
     {
         $name = $this->argument( 'name' );
         Role::whereName( $name )->delete();
         $this->info( $name.' role deleted!' );
+    }
+
+    protected function attachPermissions($role)
+    {
+        $permissions = $this->permissionsToArray($this->option('permissions'));
+
+        foreach($permissions as $permission)
+        {
+            $role->allow(Permission::firstOrCreate([
+                'display_name' => $permission,
+                'name' => $this->str->slug($permission, '_')
+            ]));
+        }
+    }
+
+    protected function permissionsToArray($permissions)
+    {
+        $permissions = explode(',',$permissions);
+        return array_map('trim', $permissions);
     }
 
 	/**
@@ -79,7 +110,8 @@ class RoleCommand extends Command
     protected function getOptions()
     {
         return [
-            [ 'delete', 'd', InputOption::VALUE_NONE, 'Add this to delete the specified role' ]
+            [ 'delete', 'd', InputOption::VALUE_NONE, 'Add this to delete the specified role' ],
+            [ 'permissions', 'p', InputOption::VALUE_OPTIONAL, 'Add permissions to role (ex.: Create user, Edit user, Delete user).' ]
         ];
     }
 
