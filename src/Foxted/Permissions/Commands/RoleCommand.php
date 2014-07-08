@@ -41,16 +41,16 @@ class RoleCommand extends Command
 	 */
 	public function fire()
 	{
-        $name = $this->argument('name');
-        $this->createRole($name);
-        $this->info($name.' role created!');
+        $this->createRole();
 	}
 
-    public function createRole($name)
+    public function createRole()
     {
-        $role = new Role();
-        $role->name = $name;
-        $role->save();
+        $name = $this->argument( 'name' );
+        $role = Role::create([
+            'name' => $name
+        ]);
+        $this->info( $name.' role created!' );
     }
 
 	/**
