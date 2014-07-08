@@ -27,7 +27,7 @@ class RoleCommand extends Command
 	 * The console command description.
 	 * @var string
 	 */
-	protected $description = 'Add a role in database';
+	protected $description = 'Add/modify a role in database with permissions';
 
     /**
      * Constructor
