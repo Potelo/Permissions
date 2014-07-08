@@ -7,12 +7,8 @@
  */
 class Role extends \Eloquent
 {
-	protected $table = 'roles';
-    protected $guarded = ['id'];
-
-    public static $factory = [
-        'name' => 'string'
-    ];
+    protected $table = "roles";
+    protected $guarded = [ 'id' ];
 
     /**
      * Permissions relationship

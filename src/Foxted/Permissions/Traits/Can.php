@@ -13,7 +13,7 @@ trait Can
      */
     public function role()
 	{
-		return $this->belongsTo('\Foxted\Permissions\Role', 'role_id');
+		return $this->belongsTo('\Foxted\Permissions\Role');
 	}
 
     /**

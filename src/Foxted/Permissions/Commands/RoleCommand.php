@@ -1,12 +1,14 @@
 <?php namespace Foxted\Permissions\Command;
 
+use Foxted\Permissions\Role;
 use Foxted\Permissions\Permission;
+
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-use Foxted\Permissions\Role;
 
 /**
  * Class RoleCommand

@@ -6,7 +6,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/foxted/permissions/v/unstable.svg)](https://packagist.org/packages/foxted/permissions) 
 [![License](https://poser.pugx.org/foxted/permissions/license.svg)](https://packagist.org/packages/foxted/permissions)
 
-Laravel 4 package for handling user roles and permissions based on [mrterryh/permissions](https://github.com/mrterryh/Permissions) package.
+Laravel 4 package for handling user roles and permissions.
 
 ## Installation
 
@@ -17,15 +17,44 @@ Add the following to the require key of your composer.json file:
         
 Run `$ composer update`.
 
-Navigate to your `config/app.php` file and add `'Foxted\Permissions\PermissionsServiceProvider'` to the `$providers` array.
+Navigate to your `config/app.php` file and add `'Foxted\Permissions\PermissionsServiceProvider'` and `'Way\Generators\GeneratorsServiceProvider'` to the `$providers` array.
 
-Create the tables by running `$ php artisan migrate --package="foxted/permissions"`. If you don't have any user table, it will create one basic table for you.
+Run `$ php artisan config:publish foxted/permissions`
 
-Navigate to your `models/User.php` file and add the `Foxted\Permissions\Can` trait below the class decloration line:
+Edit the `app/config/packages/foxted/config.php` to customize your tables names and fields. Ex. :
 
-    class User extends Eloquent implements UserInterface, RemindableInterface 
+
+    <?php
+
+    return [
+        'tables' => [
+            'users'           => 'test_users',
+            'permissions'     => 'test_permissions',
+            'roles'           => 'test_roles',
+            'permission_role' => 'test_role_permission'
+        ],
+        'fields' => [
+            'users' => [
+                'extra:string'
+            ],
+            'permissions' => [
+                'extra:string'
+            ],
+            'roles' => [
+                'extra:string'
+            ]
+        ]
+    ];
+
+Run `$ php artisan foxted:migrations` to generate the migration files
+
+**Be careful if you change the tables names, you should extend each model of the package and change the `$table` property to match yours!**
+
+Delete the original `models/User.php` file and create a new one that extends `Foxted\Permissions\User` like this :
+
+    class User extends Foxted\Permissions\User
     {
-        use Foxted\Permissions\Can;
+
     }
 
 If you want to modify the migrations, you can publish them by running : `$ php artisan migrate:publish foxted/permission`

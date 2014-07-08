@@ -20,7 +20,8 @@
     "require-dev":{
         "phpunit/phpunit": "4.1.*",
         "mockery/mockery": "0.9.*",
-        "zizaco/factory-muff": "dev-master"
+        "zizaco/factory-muff": "dev-master",
+        "way/generators": "2.6.*"
     },
     "autoload": {
         "classmap": [

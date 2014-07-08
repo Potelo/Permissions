@@ -3,6 +3,12 @@
 use Foxted\Permissions\Permission;
 use Foxted\Permissions\Role;
 
+/**
+ * Class RoleTest
+ *
+ * @author Valentin PRUGNAUD <valentin@whatdafox.com>
+ * @url http://www.foxted.com
+ */
 class RoleTest extends BaseTest
 {
 

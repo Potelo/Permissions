@@ -1,8 +1,13 @@
 <?php
 
 use Foxted\Permissions\Permission;
-use Foxted\Permissions\Role;
 
+/**
+ * Class PermissionTest
+ *
+ * @author Valentin PRUGNAUD <valentin@whatdafox.com>
+ * @url http://www.foxted.com
+ */
 class PermissionTest extends BaseTest
 {
 

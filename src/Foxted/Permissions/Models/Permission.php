@@ -7,8 +7,8 @@
  */
 class Permission extends \Eloquent
 {
-	protected $table = 'permissions';
-    protected $guarded = ['id'];
+    protected $table = "permissions";
+    protected $guarded = [ 'id' ];
 
     /**
      * Roles relationship

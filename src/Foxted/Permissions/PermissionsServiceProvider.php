@@ -32,23 +32,41 @@ class PermissionsServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-        foreach(['Role'] as $command)
+        foreach(['Role', 'Migrate'] as $command)
         {
             $this->{"register$command"}();
         }
 	}
 
     /**
-     * Register the role add command
+     * Register the role command
+     * @return void
      */
     protected function registerRole()
     {
-        $this->app->bind('roles.add', function($app)
+        $this->app->bind('foxted.role', function($app)
         {
             return $app->make('Foxted\Permissions\Command\RoleCommand');
         });
 
-        $this->commands('roles.add');
+        $this->commands('foxted.role');
+    }
+
+    /**
+     * Register the migrate command
+     * @return void
+     */
+    protected function registerMigrate()
+    {
+        $this->app->bind(
+            'foxted.migrations',
+            function ( $app )
+            {
+                return $app->make( 'Foxted\Permissions\Command\MigrationCommand' );
+            }
+        );
+
+        $this->commands( 'foxted.migrations' );
     }
 
 
@@ -58,7 +76,7 @@ class PermissionsServiceProvider extends ServiceProvider
 	 */
 	public function provides()
 	{
-		return array();
+		return array('permissions');
 	}
 
 }
