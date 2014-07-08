@@ -73,13 +73,18 @@ For your conveniance, a few console tools exists :
 
 ### Add role
 
-Quickly create a role using :  `$ php artisan roles:add <role_name>`
+Quickly create a role using :  `$ php artisan foxted:role <role_name>`
+
+### Delete a role
+
+Quickly delete a role using : `$ php artisan foxted:role <role_name> --delete`
 
 ### Attach permissions to a role
 
-Quickly attach permissions to a role using `roles:permissions`
+Quickly attach permissions to a role using `foxted:role <role_name> --permissions="First permission,
+Second permission"`
 
-Ex. : `$ php artisan roles:permissions Admin read_posts,create_posts,edit_posts,delete_posts`
+Ex. : `$ php artisan foxted:role Admin --permissions="Read post, Create posts, Edit posts, Delete posts"`
 
 ## License
 
