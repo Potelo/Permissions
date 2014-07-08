@@ -17,14 +17,12 @@ class RoleCommand extends Command
 
 	/**
 	 * The console command name.
-	 *
 	 * @var string
 	 */
-	protected $name = 'roles:add';
+	protected $name = 'foxted:role';
 
 	/**
 	 * The console command description.
-	 *
 	 * @var string
 	 */
 	protected $description = 'Add a role in database';
@@ -39,7 +37,6 @@ class RoleCommand extends Command
 
 	/**
 	 * Execute the console command.
-	 *
 	 * @return mixed
 	 */
 	public function fire()
@@ -58,7 +55,6 @@ class RoleCommand extends Command
 
 	/**
 	 * Get the console command arguments.
-	 *
 	 * @return array
 	 */
     protected function getArguments()

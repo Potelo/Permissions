@@ -20,7 +20,7 @@ class RolePermissionCommand extends Command
 	 *
 	 * @var string
 	 */
-	protected $name = 'roles:permissions';
+	protected $name = 'foxted:permissions';
 
 	/**
 	 * The console command description.
