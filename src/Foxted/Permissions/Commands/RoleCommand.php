@@ -41,16 +41,24 @@ class RoleCommand extends Command
 	 */
 	public function fire()
 	{
-        $this->createRole();
+        if($this->option( 'delete' )) $this->deleteRole();
+        else $this->createRole();
 	}
 
     public function createRole()
     {
         $name = $this->argument( 'name' );
-        $role = Role::create([
+        $role = Role::firstOrCreate([
             'name' => $name
         ]);
         $this->info( $name.' role created!' );
+    }
+
+    public function deleteRole()
+    {
+        $name = $this->argument( 'name' );
+        Role::whereName( $name )->delete();
+        $this->info( $name.' role deleted!' );
     }
 
 	/**
@@ -61,6 +69,17 @@ class RoleCommand extends Command
     {
         return [
             ['name', InputArgument::REQUIRED, 'The name of the desired role']
+        ];
+    }
+
+    /**
+     * Get the console command options.
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            [ 'delete', 'd', InputOption::VALUE_NONE, 'Add this to delete the specified role' ]
         ];
     }
 
