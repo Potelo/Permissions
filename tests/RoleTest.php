@@ -6,7 +6,10 @@ use Foxted\Permissions\Role;
 class RoleTest extends BaseTest
 {
 
-    /** @test */
+    /**
+     * It can create a role
+     * @test
+     */
     public function it_can_create_a_role()
     {
         $role = $this->createRole();
@@ -18,7 +21,10 @@ class RoleTest extends BaseTest
         );
     }
 
-    /** @test */
+    /**
+     * It can have a name
+     * @test
+     */
     public function it_can_have_a_name()
     {
         $role = $this->createRole();
@@ -30,7 +36,10 @@ class RoleTest extends BaseTest
         );
     }
 
-    /** @test */
+    /**
+     * It can have a permission
+     * @test
+     */
     public function it_can_have_a_permission()
     {
         $role = $this->createRole();
@@ -41,7 +50,10 @@ class RoleTest extends BaseTest
         $this->assertTrue($role->can('test'));
     }
 
-    /** @test */
+    /**
+     * It can deny a permission
+     * @test
+     */
     public function it_can_deny_a_permission()
     {
         $role       = $this->createRole();
@@ -51,6 +63,29 @@ class RoleTest extends BaseTest
         $role->deny( $permission );
 
         $this->assertFalse( $role->can('test') );
+    }
+
+    /**
+     * It can create a role via command line
+     * @test
+     */
+    public function it_can_create_a_role_via_command_line()
+    {
+        $output = new Symfony\Component\Console\Output\BufferedOutput();
+        $cmd = Artisan::call('foxted:role', ['name' => 'Admin'], $output);
+        $this->assertEquals( "Admin role created!", trim( $output->fetch() ) );
+    }
+
+    /**
+     * It can create a role via command line
+     *
+     * @test
+     */
+    public function it_can_delete_a_role_via_command_line()
+    {
+        $output = new Symfony\Component\Console\Output\BufferedOutput();
+        $cmd    = Artisan::call( 'foxted:role', [ 'name' => 'Admin', '--delete' => NULL ], $output );
+        $this->assertEquals( "Admin role deleted!", trim( $output->fetch() ) );
     }
 
     /**
