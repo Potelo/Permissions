@@ -30,6 +30,5 @@
         "psr-4": {
             "Foxted\\": "src/Foxted"
         }
-    },
-    "minimum-stability": "stable"
+    }
 }
