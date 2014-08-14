@@ -19,6 +19,7 @@ class CreatePermissionRoleTable extends Migration {
                 $table->increments('id');
                 $table->integer('role_id');
                 $table->integer('permission_id');
+                $table->index(['role_id', 'permission_id']);
             });
         }
 	}
